@@ -1,0 +1,21 @@
+.cards {
+  margin-top: 40px;
+}
+
+.cards__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 325px);
+  row-gap: 20px;
+  column-gap: 20px;
+  justify-content: center;
+}
+
+.cards__text {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  margin: 0 0 34px;
+}
