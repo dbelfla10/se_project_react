@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   padding: 32px 0 28px;
+  font-family: "Cabinet";
+  font-weight: 700;
 }
 
 .header__logo {
@@ -10,12 +12,14 @@
 
 .header__date-and-location {
   margin: 0;
+  font-weight: 700;
 }
 
 .header__add-clothes-btn {
   margin: 0 20px 0 auto;
   border: none;
   background-color: transparent;
+  font-weight: 700;
 }
 
 .header__user-container {
