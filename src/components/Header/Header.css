@@ -4,6 +4,7 @@
   padding: 32px 0 28px;
   font-family: "Cabinet";
   font-weight: 700;
+  font-size: 20px;
 }
 
 .header__logo {
@@ -20,6 +21,7 @@
   border: none;
   background-color: transparent;
   font-weight: 700;
+  padding: 0;
 }
 
 .header__user-container {
