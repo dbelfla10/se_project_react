@@ -1,0 +1,10 @@
+.profile {
+  display: flex;
+  gap: 116px;
+  margin-top: 19px;
+}
+
+.profile__clothes-section {
+  max-width: 1015px;
+  width: 100%;
+}
