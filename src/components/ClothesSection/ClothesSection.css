@@ -27,3 +27,14 @@
   color: #00000099;
   padding: 0;
 }
+
+.clothes-section__items {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 325px);
+  row-gap: 20px;
+  column-gap: 20px;
+  justify-content: center;
+}
