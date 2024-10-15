@@ -2,7 +2,7 @@ import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import "./Profile.css";
 
-const Profile = ({ onCardClick, clothingItems }) => {
+const Profile = ({ onCardClick, clothingItems, handleAddClick }) => {
   return (
     <div className="profile">
       <section className="profiel__sidebar">
@@ -13,6 +13,7 @@ const Profile = ({ onCardClick, clothingItems }) => {
         <ClothesSection
           onCardClick={onCardClick}
           clothingItems={clothingItems}
+          handleAddClick={handleAddClick}
         />
       </section>
     </div>
