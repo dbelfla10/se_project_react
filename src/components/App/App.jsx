@@ -12,7 +12,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
-import { getItems } from "../../utils/api";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -24,6 +24,25 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+
+  const handleAddItem = (item, resetForm) => {
+    addItem(item)
+      .then((addedItem) => {
+        setClothingItems([addedItem, ...clothingItems]);
+        closeActiveModal();
+        resetForm();
+      })
+      .catch(console.error);
+  };
+
+  const handleDeleteItem = (id) => {
+    deleteItem(id)
+      .then(() => {
+        setClothingItems((items) => items.filter((item) => item._id !== id));
+        closeActiveModal();
+      })
+      .catch(console.error);
+  };
 
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -58,10 +77,6 @@ function App() {
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
-  };
-
-  const onAddItem = (values) => {
-    console.log(values);
   };
 
   return (
@@ -99,12 +114,13 @@ function App() {
         <AddItemModal
           isOpen={activeModal === "add-garment"}
           handleCloseClick={closeActiveModal}
-          onAddItem={onAddItem}
+          onAddItem={handleAddItem}
         />
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}
           handleCloseClick={closeActiveModal}
+          onDelete={handleDeleteItem}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>
