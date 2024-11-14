@@ -5,7 +5,7 @@ import logo from "../../assets/wtwr-logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({ handleAddClick, weatherData, isLoggedIn }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -21,19 +21,37 @@ function Header({ handleAddClick, weatherData }) {
         {currentDate}, {weatherData.city}
       </p>
       <ToggleSwitch />
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        + Add clothes
-      </button>
-      <Link to="/profile" className="header__link">
-        <div className="header__user-container">
-          <p className="header__username">Terrence Tegegne</p>
-          <img src={avatar} alt="Terrence Tegegne" className="header__avatar" />
-        </div>
-      </Link>
+
+      {!isLoggedIn ? (
+        <>
+          <button className="header__signup-button" type="button">
+            Sign Up
+          </button>
+          <button className="header__login-button" type="button">
+            Log In
+          </button>
+        </>
+      ) : (
+        <>
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            + Add clothes
+          </button>
+          <Link to="/profile" className="header__link">
+            <div className="header__user-container">
+              <p className="header__username">Terrence Tegegne</p>
+              <img
+                src={avatar}
+                alt="Terrence Tegegne"
+                className="header__avatar"
+              />
+            </div>
+          </Link>
+        </>
+      )}
     </header>
   );
 }

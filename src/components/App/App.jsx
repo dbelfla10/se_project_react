@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -8,6 +8,8 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
@@ -20,6 +22,9 @@ function App() {
     temp: { F: 999, C: 999 },
     city: "",
   });
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -85,7 +90,11 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+          <Header
+            handleAddClick={handleAddClick}
+            weatherData={weatherData}
+            isLoggedIn={isLoggedIn}
+          />
 
           <Routes>
             <Route
@@ -116,6 +125,16 @@ function App() {
           isOpen={activeModal === "add-garment"}
           handleCloseClick={closeActiveModal}
           onAddItem={handleAddItem}
+        />
+        <RegisterModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          onDelete={handleDeleteItem}
+        />
+        <LoginModal
+          activeModal={activeModal}
+          handleCloseClick={closeActiveModal}
+          onDelete={handleDeleteItem}
         />
         <ItemModal
           activeModal={activeModal}
