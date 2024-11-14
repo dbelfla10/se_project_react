@@ -5,7 +5,13 @@ function checkResponse(res) {
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then(checkResponse);
+  return fetch(`${baseUrl}/items`)
+    .then(checkResponse)
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((error) => console.error("Fetch error:, error"));
 }
 
 function addItem(item) {
