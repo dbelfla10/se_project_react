@@ -30,4 +30,4 @@ function deleteItem(id) {
   );
 }
 
-export { getItems, addItem, deleteItem, checkResponse };
+export { getItems, addItem, deleteItem, checkResponse, baseUrl };
