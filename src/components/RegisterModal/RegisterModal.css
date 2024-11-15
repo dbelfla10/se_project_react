@@ -1,13 +1,7 @@
-.modal__submit {
-  margin-top: 6px;
-  width: 86px;
-  height: 40px;
-}
-
 .modal__login-button {
   position: absolute;
   bottom: 36px;
-  left: 114px;
+  left: 152px;
   border: none;
   color: #00000080;
   background-color: transparent;
