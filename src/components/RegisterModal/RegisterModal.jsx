@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import "./RegisterModal.css";
 
-const RegisterModal = ({ handleCloseClick, isOpen, onRegister }) => {
+const RegisterModal = ({
+  handleCloseClick,
+  isOpen,
+  onRegister,
+  handleLoginClick,
+}) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -41,36 +47,36 @@ const RegisterModal = ({ handleCloseClick, isOpen, onRegister }) => {
       isOpen={isOpen}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label">
-        Email{""}
+      <label htmlFor="signup-email" className="modal__label">
+        Email *{""}
         <input
           type="email"
           className="modal__input"
-          id="email"
+          id="signup-email"
           placeholder="Email"
           value={email}
           onChange={handleEmailChange}
           required
         />
       </label>
-      <label htmlFor="password" className="modal__label">
-        Password{""}
+      <label htmlFor="signup-password" className="modal__label">
+        Password *{""}
         <input
           type="password"
           className="modal__input"
-          id="password"
+          id="signup-password"
           placeholder="Password"
           value={password}
           onChange={handlePasswordChange}
           required
         />
       </label>
-      <label htmlFor="name" className="modal__label">
-        Name{""}
+      <label htmlFor="signup-name" className="modal__label">
+        Name *{""}
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="signup-name"
           placeholder="Name"
           value={name}
           onChange={handleNameChange}
@@ -78,7 +84,7 @@ const RegisterModal = ({ handleCloseClick, isOpen, onRegister }) => {
         />
       </label>
       <label htmlFor="avatarURL" className="modal__label">
-        Avatar URL{""}
+        Avatar URL *{""}
         <input
           type="url"
           className="modal__input"
@@ -89,6 +95,13 @@ const RegisterModal = ({ handleCloseClick, isOpen, onRegister }) => {
           required
         />
       </label>
+      <button
+        onClick={handleLoginClick}
+        className="modal__login-button"
+        type="button"
+      >
+        or Log In
+      </button>
     </ModalWithForm>
   );
 };

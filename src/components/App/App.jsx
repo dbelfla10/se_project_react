@@ -59,6 +59,14 @@ function App() {
     setActiveModal("add-garment");
   };
 
+  const handleSignupClick = () => {
+    setActiveModal("signup");
+  };
+
+  const handleLoginClick = () => {
+    setActiveModal("login");
+  };
+
   const closeActiveModal = () => {
     setActiveModal("");
   };
@@ -93,6 +101,8 @@ function App() {
         <div className="page__content">
           <Header
             handleAddClick={handleAddClick}
+            handleSignupClick={handleSignupClick}
+            handleLoginClick={handleLoginClick}
             weatherData={weatherData}
             isLoggedIn={isLoggedIn}
           />
@@ -130,14 +140,14 @@ function App() {
           onAddItem={handleAddItem}
         />
         <RegisterModal
-          activeModal={activeModal}
+          isOpen={activeModal === "signup"}
           handleCloseClick={closeActiveModal}
-          onDelete={handleDeleteItem}
+          handleLoginClick={handleLoginClick}
         />
         <LoginModal
-          activeModal={activeModal}
+          isOpen={activeModal === "login"}
           handleCloseClick={closeActiveModal}
-          onDelete={handleDeleteItem}
+          handleSignupClick={handleSignupClick}
         />
         <ItemModal
           activeModal={activeModal}

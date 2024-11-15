@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import "./LoginModal.css";
 
-const LoginModal = ({ handleCloseClick, isOpen, onLogin }) => {
+const LoginModal = ({
+  handleCloseClick,
+  isOpen,
+  onLogin,
+  handleSignupClick,
+}) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -19,8 +25,8 @@ const LoginModal = ({ handleCloseClick, isOpen, onLogin }) => {
 
   return (
     <ModalWithForm
-      title="Sign Up"
-      buttonText="Sign Up"
+      title="Log In"
+      buttonText="Log In"
       handleCloseClick={handleCloseClick}
       isOpen={isOpen}
       onSubmit={handleSubmit}
@@ -49,6 +55,13 @@ const LoginModal = ({ handleCloseClick, isOpen, onLogin }) => {
           required
         />
       </label>
+      <button
+        onClick={handleSignupClick}
+        className="modal__signup-button"
+        type="button"
+      >
+        or Sign Up
+      </button>
     </ModalWithForm>
   );
 };
