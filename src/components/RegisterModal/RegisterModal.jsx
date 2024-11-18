@@ -28,15 +28,18 @@ const RegisterModal = ({
     setAvatarUrl(e.target.value);
   };
 
+  const disableSubmit = !email || !password || !name || !avatarUrl;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onRegister({ email, password, name, avatarUrl }, resetForm);
   };
 
   const resetForm = () => {
+    setEmail("");
+    setPassword("");
     setName("");
-    setUrl("");
-    setWeather("");
+    setAvatarUrl("");
   };
 
   return (
@@ -46,6 +49,7 @@ const RegisterModal = ({
       handleCloseClick={handleCloseClick}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      disableSubmit={disableSubmit}
     >
       <label htmlFor="signup-email" className="modal__label">
         Email *{""}

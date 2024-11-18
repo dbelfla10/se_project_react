@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
 
 import "./Header.css";
 import logo from "../../assets/wtwr-logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import CurrentUserContext from "../../context/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -16,6 +18,8 @@ function Header({
     month: "long",
     day: "numeric",
   });
+
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className="header">
@@ -56,7 +60,7 @@ function Header({
           </button>
           <Link to="/profile" className="header__link">
             <div className="header__user-container">
-              <p className="header__username">Terrence Tegegne</p>
+              <p className="header__username">{currentUser?.name}</p>
               <img
                 src={avatar}
                 alt="Terrence Tegegne"
