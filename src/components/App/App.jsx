@@ -16,7 +16,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import { getItems, addItem, deleteItem } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { register, login } from "../../utils/auth";
+import * as auth from "../../utils/auth";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -25,12 +25,16 @@ function App() {
     city: "",
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+
+  const handleRegistration = (data) => {
+    auth.register(data).catch(console.error);
+  };
 
   const handleAddItem = (item, resetForm) => {
     addItem(item)
@@ -144,6 +148,7 @@ function App() {
           isOpen={activeModal === "signup"}
           handleCloseClick={closeActiveModal}
           handleLoginClick={handleLoginClick}
+          handleRegistration={handleRegistration}
         />
         <LoginModal
           isOpen={activeModal === "login"}

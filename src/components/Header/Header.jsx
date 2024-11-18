@@ -6,6 +6,7 @@ import logo from "../../assets/wtwr-logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import CurrentUserContext from "../../context/CurrentUserContext";
+import Avatar from "../Avatar/Avatar";
 
 function Header({
   handleAddClick,
@@ -61,11 +62,12 @@ function Header({
           <Link to="/profile" className="header__link">
             <div className="header__user-container">
               <p className="header__username">{currentUser?.name}</p>
-              <img
+              <Avatar />
+              {/* <img
                 src={avatar}
                 alt="Terrence Tegegne"
                 className="header__avatar"
-              />
+              /> */}
             </div>
           </Link>
         </>

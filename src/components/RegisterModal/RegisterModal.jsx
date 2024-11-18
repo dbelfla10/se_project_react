@@ -7,6 +7,7 @@ const RegisterModal = ({
   isOpen,
   onRegister,
   handleLoginClick,
+  handleRegistration,
 }) => {
   const [email, setEmail] = useState("");
   const handleEmailChange = (e) => {
@@ -32,7 +33,7 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister({ email, password, name, avatarUrl }, resetForm);
+    handleRegistration({ email, password, name, avatar: avatarUrl }, resetForm);
   };
 
   const resetForm = () => {
