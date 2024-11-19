@@ -12,7 +12,7 @@ export const register = ({ email, password, name, avatar }) => {
 };
 
 export const login = ({ email, password }) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,4 +28,14 @@ export const login = ({ email, password }) => {
       return checkResponse(res);
     })
     .catch((error) => console.error("Login error:, error"));
+};
+
+export const getUserInfo = (token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
 };

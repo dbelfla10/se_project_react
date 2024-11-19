@@ -5,7 +5,6 @@ import "./RegisterModal.css";
 const RegisterModal = ({
   handleCloseClick,
   isOpen,
-  onRegister,
   handleLoginClick,
   handleRegistration,
 }) => {
@@ -33,7 +32,8 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration({ email, password, name, avatar: avatarUrl }, resetForm);
+    handleRegistration({ email, password, name, avatar: avatarUrl });
+    resetForm();
   };
 
   const resetForm = () => {

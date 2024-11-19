@@ -5,7 +5,7 @@ import "./LoginModal.css";
 const LoginModal = ({
   handleCloseClick,
   isOpen,
-  onLogin,
+  handleLogin,
   handleSignupClick,
 }) => {
   const [email, setEmail] = useState("");
@@ -20,7 +20,13 @@ const LoginModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({ email, password }, resetForm);
+    handleLogin({ email, password });
+    resetForm();
+  };
+
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
   };
 
   return (
