@@ -18,6 +18,7 @@ import { getItems, addItem, deleteItem } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
 import CurrentUserContext from "../../context/CurrentUserContext";
+import { setToken, getToken } from "../../utils/token";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -38,8 +39,8 @@ function App() {
     auth
       .register(data)
       .then(() => {
+        handleLogin({ email, password });
         closeActiveModal();
-        setIsLoggedIn(true);
       })
       .catch(console.error);
   };
@@ -54,6 +55,7 @@ function App() {
       .then((res) => {
         console.log(res);
         if (res.token) {
+          setToken(res.token);
           closeActiveModal();
           setIsLoggedIn(true);
           auth.getUserInfo(res.token).then((res) => {
@@ -103,6 +105,22 @@ function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
+
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    auth
+      .getUserInfo(jwt)
+      .then((userData) => {
+        setIsLoggedIn(true);
+        setCurrentUser(userData);
+      })
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
