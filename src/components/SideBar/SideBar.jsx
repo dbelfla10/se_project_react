@@ -5,7 +5,7 @@ import "./SideBar.css";
 import CurrentUserContext from "../../context/CurrentUserContext";
 import Avatar from "../Avatar/Avatar";
 
-const SideBar = ({ handleLogout }) => {
+const SideBar = ({ handleLogout, handleChangeProfileClick }) => {
   const currentUser = useContext(CurrentUserContext);
   const isSidebar = useState(true);
   return (
@@ -15,7 +15,11 @@ const SideBar = ({ handleLogout }) => {
         <Avatar isSidebar={isSidebar} />
         <p className="sidebar__username">{currentUser?.name}</p>
       </div>
-      <button className="sidebar__change-profile-btn" type="button">
+      <button
+        onClick={handleChangeProfileClick}
+        className="sidebar__change-profile-btn"
+        type="button"
+      >
         Change profile data
       </button>
       <button

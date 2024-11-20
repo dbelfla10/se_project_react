@@ -39,3 +39,14 @@ export const getUserInfo = (token) => {
     },
   }).then(checkResponse);
 };
+
+export const changeProfile = ({ name, avatar }, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name, avatar }),
+  }).then(checkResponse);
+};

@@ -11,6 +11,7 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import ItemModal from "../ItemModal/ItemModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import Profile from "../Profile/Profile";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
@@ -77,10 +78,27 @@ function App() {
   const handleAddItem = (item, resetForm) => {
     const jwt = getToken();
     addItem(item, jwt)
-      .then((addedItem) => {
-        setClothingItems([addedItem, ...clothingItems]);
+      .then((res) => {
+        const addedItem = res.data;
+        if (addedItem && addedItem.imageUrl && addedItem.name) {
+          setClothingItems([addedItem, ...clothingItems]);
+        } else {
+          console.error;
+        }
         closeActiveModal();
         resetForm();
+      })
+      .catch(console.error);
+  };
+
+  const handleProfileChange = ({ name, avatar }) => {
+    const jwt = getToken();
+    auth
+      .changeProfile({ name, avatar }, jwt)
+      .then((res) => {
+        console.log(res);
+        setCurrentUser(res);
+        closeActiveModal();
       })
       .catch(console.error);
   };
@@ -109,6 +127,10 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal("login");
+  };
+
+  const handleChangeProfileClick = () => {
+    setActiveModal("change-profile");
   };
 
   const closeActiveModal = () => {
@@ -188,6 +210,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       handleLogout={handleLogout}
+                      handleChangeProfileClick={handleChangeProfileClick}
                     />
                   </ProtectedRoute>
                 }
@@ -218,6 +241,11 @@ function App() {
             card={selectedCard}
             handleCloseClick={closeActiveModal}
             onDelete={handleDeleteItem}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "change-profile"}
+            handleCloseClick={closeActiveModal}
+            handleProfileChange={handleProfileChange}
           />
         </CurrentTemperatureUnitContext.Provider>
       </div>

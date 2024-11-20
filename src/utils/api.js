@@ -26,9 +26,13 @@ function addItem(item, token) {
 }
 
 function deleteItem(id) {
-  return fetch(`${baseUrl}/items/${id}`, { method: "DELETE" }).then(
-    checkResponse
-  );
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  }).then(checkResponse);
 }
 
 export { getItems, addItem, deleteItem, checkResponse, baseUrl };
