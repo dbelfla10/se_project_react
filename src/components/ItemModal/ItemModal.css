@@ -30,7 +30,7 @@
   margin: 0;
 }
 
-.modal__delete-btn {
+.item__delete-button {
   position: absolute;
   right: 0px;
   font-size: 20px;
@@ -40,4 +40,8 @@
   color: #ff4d00;
   border: none;
   padding: 0;
+}
+
+.item__delete-button_hidden {
+  display: none;
 }

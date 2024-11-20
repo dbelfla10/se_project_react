@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
@@ -18,7 +18,7 @@ import { getItems, addItem, deleteItem } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import * as auth from "../../utils/auth";
 import CurrentUserContext from "../../context/CurrentUserContext";
-import { setToken, getToken } from "../../utils/token";
+import { setToken, getToken, removeToken } from "../../utils/token";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -35,12 +35,14 @@ function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
-  const handleRegistration = (data) => {
+  const navigate = useNavigate();
+
+  const handleRegistration = ({ email, password, name, avatar }) => {
     auth
-      .register(data)
-      .then(() => {
+      .register({ email, password, name, avatar })
+      .then((res) => {
+        console.log(res);
         handleLogin({ email, password });
-        closeActiveModal();
       })
       .catch(console.error);
   };
@@ -66,8 +68,15 @@ function App() {
       .catch(console.error);
   };
 
+  const handleLogout = () => {
+    removeToken();
+    navigate("/");
+    setIsLoggedIn(false);
+  };
+
   const handleAddItem = (item, resetForm) => {
-    addItem(item)
+    const jwt = getToken();
+    addItem(item, jwt)
       .then((addedItem) => {
         setClothingItems([addedItem, ...clothingItems]);
         closeActiveModal();
@@ -178,6 +187,7 @@ function App() {
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      handleLogout={handleLogout}
                     />
                   </ProtectedRoute>
                 }
