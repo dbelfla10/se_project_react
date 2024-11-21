@@ -1,6 +1,7 @@
 .card {
   position: relative;
   width: 325px;
+  height: 328px;
   border-radius: 20px;
   border: 1px solid #0000004d;
   display: flex;
@@ -24,4 +25,5 @@
 .card__image {
   width: 100%;
   border-radius: 20px;
+  object-fit: cover;
 }
