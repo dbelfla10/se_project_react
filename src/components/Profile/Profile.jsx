@@ -8,6 +8,8 @@ const Profile = ({
   handleAddClick,
   handleLogout,
   handleChangeProfileClick,
+  handleCardLike,
+  isLoggedIn,
 }) => {
   return (
     <div className="profile">
@@ -23,6 +25,8 @@ const Profile = ({
           onCardClick={onCardClick}
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
+          handleCardLike={handleCardLike}
+          isLoggedIn={isLoggedIn}
         />
       </section>
     </div>
