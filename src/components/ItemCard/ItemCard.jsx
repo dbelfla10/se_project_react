@@ -13,7 +13,7 @@ function ItemCard({ item, onCardClick, handleCardLike, isLoggedIn }) {
   };
 
   const handleLike = () => {
-    console.log(item);
+    // console.log(item);
     handleCardLike({ id: item._id, isLiked });
   };
 

@@ -33,6 +33,7 @@
   align-items: center;
   padding: 0;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .card__image {
