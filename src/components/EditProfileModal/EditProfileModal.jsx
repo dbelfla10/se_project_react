@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import CurrentUserContext from "../../context/CurrentUserContext";
 
@@ -24,6 +24,13 @@ const EditProfileModal = ({
     handleProfileChange({ name, avatar: avatarUrl });
   };
 
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name || "");
+      setAvatarUrl(currentUser.avatar || "");
+    }
+  }, [currentUser]);
+
   return (
     <ModalWithForm
       title="Change profile data"
@@ -38,7 +45,7 @@ const EditProfileModal = ({
           type="text"
           className="modal__input"
           id="edit-name"
-          placeholder={currentUser?.name}
+          placeholder="Name"
           value={name}
           onChange={handleNameChange}
           required

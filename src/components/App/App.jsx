@@ -103,7 +103,7 @@ function App() {
       .changeProfile({ name, avatar }, jwt)
       .then((res) => {
         console.log(res);
-        setCurrentUser(res);
+        setCurrentUser((pastUser) => ({ ...pastUser, name, avatar }));
         closeActiveModal();
       })
       .catch(console.error);
