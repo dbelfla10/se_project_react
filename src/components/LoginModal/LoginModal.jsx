@@ -21,13 +21,12 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleLogin({ email, password });
-    resetForm();
   };
 
-  const resetForm = () => {
-    setEmail("");
-    setPassword("");
-  };
+  // const resetForm = () => {
+  //   setEmail("");
+  //   setPassword("");
+  // };
 
   return (
     <ModalWithForm
