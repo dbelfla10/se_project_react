@@ -33,15 +33,14 @@ const RegisterModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegistration({ email, password, name, avatar: avatarUrl });
-    resetForm();
   };
 
-  const resetForm = () => {
-    setEmail("");
-    setPassword("");
-    setName("");
-    setAvatarUrl("");
-  };
+  // const resetForm = () => {
+  //   setEmail("");
+  //   setPassword("");
+  //   setName("");
+  //   setAvatarUrl("");
+  // };
 
   return (
     <ModalWithForm
