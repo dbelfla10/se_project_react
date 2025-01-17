@@ -18,16 +18,14 @@ export const login = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        if (res.status === 401) {
-          return Promise.reject("Incorrect email or password");
-        }
+  }).then((res) => {
+    if (!res.ok) {
+      if (res.status === 401) {
+        return Promise.reject("Incorrect email or password");
       }
-      return checkResponse(res);
-    })
-    .catch((error) => console.error("Login error:, error"));
+    }
+    return checkResponse(res);
+  });
 };
 
 export const getUserInfo = (token) => {
