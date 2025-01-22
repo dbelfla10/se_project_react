@@ -2,6 +2,8 @@
 
 What to Wear is an app that lets users view and add clothing items tailored to the weather conditions of their current location.
 
+![WTWR App](./src/assets/demo/image.jpg)
+
 ## Features
 
 - User registration
